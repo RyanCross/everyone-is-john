@@ -1,18 +1,25 @@
 import express from "express";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
+import { initGameState } from "./game.js";
+import { gameRouter } from "./routers/gameRouter.js";
 dotenv.config({ path: "../.env" });
 
 const app = express();
 const port = 3001;
+
+// Allow express to parse JSON bodies
+app.use(express.json());
 
 app.use((req, res, next) => {
   console.log('Time:', Date.now())
   next()
 })
 
-// Allow express to parse JSON bodies
-app.use(express.json());
+app.use('/game', gameRouter)
+
+// Right now initialize the game on server startup
+export const gameState = initGameState();
 
 app.get('/user/:id', (req, res, next) => {
   // if the user ID is 0, skip to the next route
@@ -30,6 +37,11 @@ app.get('/user/:id', (req, res, next) => {
 })
 
 
+/**
+ * Roll API 
+ * triggered by user roll action on client
+ * appends roll to log
+ */
 
 app.post("/api/token", async (req, res) => {
   
