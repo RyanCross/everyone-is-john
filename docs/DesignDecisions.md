@@ -1,0 +1,1 @@
+Not concerned with client side cheating - This is a tabletop RPG for casual with friends
