@@ -20,7 +20,7 @@ class GameLog {
  * Initialize the game object the server will maintain and push to clients
  */
 export function initGameState() {
-    const game = {}
+    const game = {log: null}
     game.log = new GameLog()
     return game
 }

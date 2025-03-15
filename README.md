@@ -1,3 +1,3 @@
 # Everyone Is John
 
-This is a web app version of the CC game Everyone is John by michael sullivan
+A web app to play Everyone is John by Michael Sullivan with your friends.
