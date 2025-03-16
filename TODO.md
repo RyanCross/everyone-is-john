@@ -1,0 +1,1 @@
+tests that validate XSS on roll

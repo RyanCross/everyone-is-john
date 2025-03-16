@@ -1,5 +1,6 @@
 import express from "express"
 import { gameState } from "../server.js"
+import { body, validationResult } from "express-validator";
 
 /**
  * Router to modularize any specific middleware for game routes
@@ -7,16 +8,24 @@ import { gameState } from "../server.js"
  */
 export const gameRouter = express.Router()
 
-gameRouter.post("/roll", (req, res, next) => {
-    console.log("Roll Request")
-    const roll = req.body.roll
-    const player = req.body.player
+gameRouter.post("/roll",
+    body('roll').notEmpty().isNumeric().escape(),
+    body('player').notEmpty().isAlphanumeric().escape(),
+    (req, res) => {
+        const errors = validationResult(req)
 
-    // add to game log
-    gameState.log.add(`${player} rolled a ${roll}`)
+        if(errors.isEmpty()) {
+            const roll = req.body.roll
+            const player = req.body.player
+    
+            // add to game log
+            gameState.log.add(`${player} rolled a ${roll}`)
+            res.send() 
+            return
+        }
 
-    res.send()
-})
+        res.status(400).send(errors)
+    })
 
 gameRouter.get('/', (req, res, next) => {
     console.log("Request for game state")

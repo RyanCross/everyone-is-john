@@ -22,5 +22,6 @@ class GameLog {
 export function initGameState() {
     const game = {log: null}
     game.log = new GameLog()
+    console.log("Game state initialized")
     return game
 }
