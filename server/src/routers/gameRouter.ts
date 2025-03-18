@@ -28,6 +28,5 @@ gameRouter.post("/roll",
     })
 
 gameRouter.get('/', (req, res, next) => {
-    console.log("Request for game state")
     res.send(gameState)
 })
