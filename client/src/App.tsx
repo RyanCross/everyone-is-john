@@ -5,9 +5,14 @@ import { GameMasterSection } from './components/GameMasterSection'
 import { Roll } from './components/Roll'
 import { Voices } from './components/Voices'
 
+export interface Bid {
+  bidId : number
+  submittedPlayers : number[]
+}
 
 function App() {
   const [count, setCount] = useState(0)
+  const [bid, setBid] = useState()
 
   return (
     <Container>
