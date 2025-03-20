@@ -2,11 +2,11 @@
   "name": "getting-starter-activity-server",
   "version": "1.0.0",
   "description": "",
-  "main": "build/server.js",
+  "main": "dist/server.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node build/server.js",
+    "start": "tsc && node dist/server.js",
     "dev": "tsx --watch src/server.ts"
   },
   "keywords": [],

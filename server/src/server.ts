@@ -7,7 +7,7 @@ import { gameRouter } from "./routers/gameRouter.js";
 dotenv.config({ path: "../.env" });
 
 const app = express();
-const port = 3001;
+const port = 8080;
 
 // Allow express to parse JSON bodies
 app.use(express.json());
@@ -50,5 +50,6 @@ app.post("/api/token", async (req, res) => {
 export const gameState = initGameState();
 
 app.listen(port, () => {
+  console.log("Registered routes:", app._router.stack.map(r => r.route?.path));
   console.log(`Server listening at http://localhost:${port}`);
 });
