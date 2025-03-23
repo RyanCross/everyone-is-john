@@ -1,4 +1,4 @@
-import { Box, Grid2 } from "@mui/material";
+import { Box, Container, Grid2 } from "@mui/material";
 import { PlayerColumn, PlayerColumnProps } from "./PlayerColumn";
 
 /**
@@ -19,7 +19,7 @@ export function Voices() {
     }
 
     return (
-        <Box component="div">
+        <Container component="div">
             <h1>The <i>Voices</i> </h1>
             <Grid2 container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid2 size={6}>
@@ -55,7 +55,7 @@ export function Voices() {
                     </PlayerColumn>
                 </Grid2>
             </Grid2>
-        </Box>
+        </Container>
     )
 
 

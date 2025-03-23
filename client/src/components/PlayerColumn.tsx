@@ -41,8 +41,8 @@ export function PlayerColumn(props: PlayerColumnProps) {
                 <Typography>#Name</Typography>
                 <CardMedia
                     component="img"
-                    height="320px"
-                    width="320px"
+                    height="128px"
+                    width="128px"
                     image={svg} >
                 </CardMedia>
                 <Box>
