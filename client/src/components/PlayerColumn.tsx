@@ -3,10 +3,10 @@ import svg from "../assets/react.svg"
 import { useState } from "react"
 import { Bid } from "../App"
 
-interface PlayerColumnProps {
-    playerName: string
-    playerId: number
-    startingWillpower : number
+export interface PlayerColumnProps {
+    name: string
+    id: number
+    startingWillpower: number
     bid: Bid | null
 }
 
@@ -15,17 +15,22 @@ export function PlayerColumn(props: PlayerColumnProps) {
     let [willpower, setWillpower] = useState(props.startingWillpower)
     let [bidAmount, setBidAmount] = useState(0)
 
-    function handlePlus(bidAmount : number) {
-        setBidAmount(bidAmount + 1)
+    function handlePlus(bidAmount: number) {
+        if (bidAmount < willpower) {
+            setBidAmount(bidAmount + 1)
+        }
     }
 
-    function handleMinus(bidAmount : number) {
-        setBidAmount(bidAmount - 1)
+    function handleMinus(bidAmount: number) {
+        if (bidAmount > 0) {
+            setBidAmount(bidAmount - 1)
+        }
+
     }
 
-    function handleSubmitBid(bidAmount : number) {
+    function handleSubmitBid(bidAmount: number) {
         // if bidAmount > willpower, cannot submit bid
-        
+        // what show when can't submit bid.
     }
 
 
@@ -46,22 +51,15 @@ export function PlayerColumn(props: PlayerColumnProps) {
             </CardContent>
             {props.bid ? (
                 <CardActionArea>
-                    <Box>
-                        <Typography>${bidAmount}</Typography>
-                        <Button>-</Button>
-                        <Button>+</Button>
-                    </Box>
+
+                    <Button onClick={() => { handleMinus(bidAmount) }}>-</Button>
+                    <Typography>{bidAmount}</Typography>
+                    <Button onClick={() => { handlePlus(bidAmount) }}>+</Button>
                     <Box>
                         <Button>Submit Bid</Button>
                     </Box>
 
                 </CardActionArea>) : <></>}
-
-
-
-
-
-
         </Card>
 
     )
