@@ -33,8 +33,6 @@ export function PlayerColumn(props: PlayerColumnProps) {
         // what show when can't submit bid.
     }
 
-
-
     return (
         <Card>
             <CardContent>

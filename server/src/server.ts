@@ -13,7 +13,6 @@ const port = 8080;
 app.use(express.json());
 // Middleware to log HTTP requests and responses
 app.use(morgan('dev'))
-// TODO add helmet
 
 app.use((req, res, next) => {
   console.log('Time:', Date.now())
