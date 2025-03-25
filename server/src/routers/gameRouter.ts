@@ -1,6 +1,8 @@
 import express from "express"
-import { gameState } from "../server.js"
 import { body, validationResult } from "express-validator";
+import { Request, Response } from "express";
+import { games } from "../server.js";
+import { initGameState } from "../game.js";
 
 /**
  * Router to modularize any specific middleware for game routes
@@ -19,7 +21,8 @@ gameRouter.post("/roll",
             const player = req.body.player
     
             // add to game log
-            gameState.log.add(`${player} rolled a ${roll}`)
+            //TODO this needs to be set up to get game
+          //  gameState.log.add(`${player} rolled a ${roll}`)
             res.send() 
             return
         }
@@ -27,6 +30,21 @@ gameRouter.post("/roll",
         res.status(400).send(errors)
     })
 
-gameRouter.get('/', (req, res, next) => {
-    res.send(gameState)
+gameRouter.post("/:instanceId", async (req: Request, res: Response) => {
+  const instanceId = req.params.instanceId
+
+  // what is the request body going to look like?
+  const newPlayer = req.body.newPlayer
+
+  // if game does not exist for the activity instance in server memory, create one
+  const game = games.get(instanceId)
+  if (game) {
+    game.players.push()
+  } else {
+    let newGame = initGameState(newPlayer)
+    games.set(instanceId, newGame)
+
+  }
+
+  // how are we going to push this update? HTTP response. server sent events.
 })

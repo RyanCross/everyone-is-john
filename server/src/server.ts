@@ -2,12 +2,14 @@ import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan"
 import fetch from "node-fetch";
-import { initGameState } from "./game.js";
 import { gameRouter } from "./routers/gameRouter.js";
 dotenv.config({ path: "../.env" });
 
 const app = express();
 const port = 8080;
+
+// the active games (activity instances), we'll store this in server memory for now.
+export const games = new Map<string, any>()
 
 // Allow express to parse JSON bodies
 app.use(express.json());
@@ -19,11 +21,11 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/game', gameRouter)
+app.use('/api/game/', gameRouter)
 
 // Auth to discord API
 app.post("/api/token", async (req, res) => {
-  
+
   // Exchange the code for an access_token
   const response = await fetch(`https://discord.com/api/oauth2/token`, {
     method: "POST",
@@ -42,11 +44,8 @@ app.post("/api/token", async (req, res) => {
   const { access_token } = await response.json() as { access_token: string };
 
   // Return the access_token to our client as { access_token: "..."}
-  res.send({access_token});
+  res.send({ access_token });
 });
-
-// Right now initialize the game on server startup
-export const gameState = initGameState();
 
 app.listen(port, () => {
   console.log("Registered routes:", app._router.stack.map(r => r.route?.path));

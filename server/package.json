@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/server.js",
-    "dev": "tsx --watch src/server.ts"
+    "dev": "tsx --watch --inspect src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +20,7 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "@types/express": "^5.0.0",
+    "@types/express": "^5.0.1",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.13.10",
     "nodemon": "^3.1.9",

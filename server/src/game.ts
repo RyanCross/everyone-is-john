@@ -19,8 +19,8 @@ class GameLog {
 /**
  * Initialize the game object the server will maintain and push to clients
  */
-export function initGameState() {
-    const game = {log: null}
+export function initGameState(newPlayer: any) {
+    const game = {log: null, players: [newPlayer]}
     game.log = new GameLog()
     console.log("Game state initialized")
     return game

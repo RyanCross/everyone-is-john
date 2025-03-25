@@ -10,6 +10,8 @@ A web app to play Everyone is John by Michael Sullivan with your friends.
 * Ensure the allowedHosts property in client/vite.config.js contains the tunnel url
 * Launch Activity through discord.
 
+### Debugging
+Debugging with VSCodes auto-attach feature. (on commands with --inspect flag)
 
 ## Middleware
 * `morgan` - for http request/response logging

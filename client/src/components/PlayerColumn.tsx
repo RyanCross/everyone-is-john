@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material"
+import { Box, Button, Card, CardContent, CardMedia, Typography } from "@mui/material"
 import svg from "../assets/react.svg"
 import { useState } from "react"
 import { Bid } from "../App"
@@ -27,7 +27,7 @@ export function PlayerColumn(props: PlayerColumnProps) {
         }
 
     }
-
+    
     function handleSubmitBid(bidAmount: number) {
         // if bidAmount > willpower, cannot submit bid
         // what show when can't submit bid.
@@ -48,7 +48,7 @@ export function PlayerColumn(props: PlayerColumnProps) {
                 </Box>
             </CardContent>
             {props.bid ? (
-                <CardActionArea>
+                <>
 
                     <Button onClick={() => { handleMinus(bidAmount) }}>-</Button>
                     <Typography>{bidAmount}</Typography>
@@ -57,7 +57,7 @@ export function PlayerColumn(props: PlayerColumnProps) {
                         <Button>Submit Bid</Button>
                     </Box>
 
-                </CardActionArea>) : <></>}
+                </>) : <></>}
         </Card>
 
     )
