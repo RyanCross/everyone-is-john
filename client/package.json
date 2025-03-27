@@ -4,10 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --inspect",
+    "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
+  },
+  "overrides": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "^1.9.0",
@@ -15,6 +19,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.8",
     "react": "^19.0.0",
+    "react-dice-roll": "^1.2.2",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
