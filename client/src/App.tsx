@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import { Container } from "@mui/material"
+import { Container, ThemeProvider } from "@mui/material"
 import { GameLog } from './components/GameLog'
 import { GameMasterSection } from './components/GameMasterSection'
 import { Roll } from './components/Roll'
 import { Voices } from './components/Voices'
 
 export interface Bid {
-  bidId : number
-  submittedPlayers : number[]
+  bidId: number
+  submittedPlayers: number[]
 }
 
 function App() {
@@ -15,12 +15,12 @@ function App() {
   const [bid, setBid] = useState()
 
   return (
-    <Container>
-      <GameMasterSection gm="zzPodlif"/>
-      <GameLog />
-      <Roll></Roll>
-      <Voices></Voices>
-    </Container>
+      <Container>
+        <GameMasterSection gm="zzPodlif" />
+        <GameLog />
+        <Roll></Roll>
+        <Voices></Voices>
+      </Container>
   )
 }
 

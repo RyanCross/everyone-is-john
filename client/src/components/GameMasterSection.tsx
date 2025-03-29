@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material"
+import { Container, Typography } from "@mui/material"
 import { GmActionBar } from "./GmActionBar"
 
 interface GameMasterSectionProps {
@@ -8,7 +8,7 @@ interface GameMasterSectionProps {
 export function GameMasterSection(props: GameMasterSectionProps) {
     return (
         <Container component="section">
-            <h1>Everyone Else: {props.gm}</h1>
+            <Typography variant="h1">Everyone Else: {props.gm}</Typography>
             <GmActionBar />
         </Container>
     )

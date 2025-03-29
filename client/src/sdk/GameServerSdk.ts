@@ -4,5 +4,4 @@
  */
 function save(instanceId: string, player: any) {
     // create a HTTP POST request to /.proxy/game/instanceId
-    
 }
