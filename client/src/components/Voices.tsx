@@ -1,5 +1,5 @@
-import { Box, Container, Grid2 } from "@mui/material";
-import { PlayerColumn, PlayerColumnProps } from "./PlayerColumn";
+import { Box, Container, Grid2, Typography } from "@mui/material";
+import { Player, PlayerProps } from "./Player";
 
 /**
  * The Voices represent the players of the game. This component displays
@@ -19,40 +19,42 @@ export function Voices() {
     }
 
     return (
-        <Container component="div">
-            <h1>The <i>Voices</i> </h1>
-            <Grid2 container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid2 size={6}>
-                    <PlayerColumn
+        <Container>
+            <Typography variant="h4">The Voices</Typography>
+
+            {/* if we want 3 players per row */}
+            <Grid2 container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
+                <Grid2 size={3}>
+                    <Player
                         name={dummyPlayer.name}
                         id={dummyPlayer.id}
                         startingWillpower={dummyPlayer.startingWillpower}
                         bid={dummyPlayer.bid}>
-                    </PlayerColumn>
+                    </Player>
                 </Grid2>
-                <Grid2 size={6}>
-                <PlayerColumn
+                <Grid2 size={3}>
+                    <Player
                         name={dummyPlayer.name}
                         id={dummyPlayer.id}
                         startingWillpower={dummyPlayer.startingWillpower}
                         bid={dummyPlayer.bid}>
-                    </PlayerColumn>
+                    </Player>
                 </Grid2>
-                <Grid2 size={6}>
-                <PlayerColumn
+                <Grid2 size={3}>
+                    <Player
                         name={dummyPlayer.name}
                         id={dummyPlayer.id}
                         startingWillpower={dummyPlayer.startingWillpower}
                         bid={dummyPlayer.bid}>
-                    </PlayerColumn>
+                    </Player>
                 </Grid2>
-                <Grid2 size={6}>
-                <PlayerColumn
+                <Grid2 size={3}>
+                    <Player
                         name={dummyPlayer.name}
                         id={dummyPlayer.id}
                         startingWillpower={dummyPlayer.startingWillpower}
                         bid={dummyPlayer.bid}>
-                    </PlayerColumn>
+                    </Player>
                 </Grid2>
             </Grid2>
         </Container>

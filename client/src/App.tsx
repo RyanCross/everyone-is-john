@@ -15,12 +15,11 @@ function App() {
   const [bid, setBid] = useState()
 
   return (
-      <Container>
+      <>
         <GameMasterSection gm="zzPodlif" />
         <GameLog />
-        <Roll></Roll>
         <Voices></Voices>
-      </Container>
+      </>
   )
 }
 

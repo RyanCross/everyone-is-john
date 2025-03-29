@@ -8,7 +8,7 @@ interface GameMasterSectionProps {
 export function GameMasterSection(props: GameMasterSectionProps) {
     return (
         <Container component="section">
-            <Typography variant="h1">Everyone Else: {props.gm}</Typography>
+            <Typography variant="h4">Everyone Else: {props.gm}</Typography>
             <GmActionBar />
         </Container>
     )

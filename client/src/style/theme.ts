@@ -64,7 +64,6 @@ const themeOptions: ThemeOptions = {
     },
     button: {
       fontFamily: 'Barrio',
-      fontSize: '1.5rem',
     },
 
   },

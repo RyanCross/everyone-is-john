@@ -1,10 +1,10 @@
-import { Box, Container } from '@mui/material'
+import { Box } from '@mui/material'
 import Dice from 'react-dice-roll'
 
 export function Roll() {
     return (
-        <Container>
+        <Box sx={{ml: 1, mt: 1}}>
             <Dice size={64} onRoll={(value : number) => console.log(value)} />
-        </Container>
+        </Box>
     )
 }
