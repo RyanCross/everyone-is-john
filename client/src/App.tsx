@@ -4,6 +4,7 @@ import { GameLog } from './components/GameLog'
 import { GameMasterSection } from './components/GameMasterSection'
 import { Roll } from './components/Roll'
 import { Voices } from './components/Voices'
+import { PlayInformationArea } from './components/PlayInformationArea'
 
 export interface Bid {
   bidId: number
@@ -17,7 +18,7 @@ function App() {
   return (
       <>
         <GameMasterSection gm="zzPodlif" />
-        <GameLog />
+        <PlayInformationArea></PlayInformationArea>
         <Voices></Voices>
       </>
   )

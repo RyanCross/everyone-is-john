@@ -5,15 +5,15 @@ import theme from "../style/theme"
 
 export function GameLog() {
     return (
-        <Container>
+        <Box sx={{ flex: 2, mr: 2}}>
             <Card>
                 <Paper elevation={3}>
-                    <Typography variant="h5" sx={{ml: 1}}>Game Log</Typography>
+                    <Typography variant="h5" sx={{ ml: 1 }}>Game Log</Typography>
                 </Paper>
                 <List title="GameLog" sx={[{
                     overflowY: "scroll",
+                    minHeight: "200px",
                     maxHeight: "200px",
-                    minWidth: "400px",
                     mt: .25
                 }]}>
                     <ListItem>{"John Rolled a 1"}</ListItem>
@@ -28,8 +28,7 @@ export function GameLog() {
                 <Divider sx={{ borderColor: theme.palette.primary.light }}></Divider>
                 <Roll></Roll>
             </Card>
-
-        </Container>
+        </Box>
 
     )
 }
