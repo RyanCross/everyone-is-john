@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/server.js",
-    "dev": "tsx --watch --inspect src/server.ts"
+    "dev": "tsx --watch --inspect src/server.ts",
+    "test": "tsx --watch --inspect ./test/stateManager.test.ts"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +23,7 @@
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/morgan": "^1.9.9",
-    "@types/node": "^22.13.10",
+    "@types/node": "^22.14.1",
     "nodemon": "^3.1.9",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
