@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": "tsc && node dist/server.js",
     "dev": "tsx --watch --inspect src/server.ts",
-    "test": "tsx --watch --inspect ./test/stateManager.test.ts"
+    "test": "tsx --inspect ./test/stateManager.test.ts"
   },
   "keywords": [],
   "author": "",

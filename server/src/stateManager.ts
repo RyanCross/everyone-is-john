@@ -29,7 +29,7 @@ async function runLocked<T>(obj: Lockable<T>, fn: any, waitTime: number) {
     // if locked, begin retry loop
     if (obj.locked) {
         console.log(`object is locked, retrying in ${waitTime}`)
-        retry(runLocked, waitTime, obj, fn)
+        return retry(runLocked, waitTime, obj, fn)
     }
     else {
         console.log("Object unlocked, locking and executing...")
@@ -44,9 +44,9 @@ async function runLocked<T>(obj: Lockable<T>, fn: any, waitTime: number) {
 
 async function retry(runLocked, waitTime, lockedObj, fn) {
     // set timeout and run lock execute function again, if still locked, we'll be back here with more wait time.
-
-    await setTimeout(waitTime, () => { runLocked(lockedObj, fn, waitTime) })
+    await setTimeout(waitTime)
     waitTime += 1000
+    return runLocked(lockedObj, fn, waitTime)
 }
 
 export const stateManager = {
