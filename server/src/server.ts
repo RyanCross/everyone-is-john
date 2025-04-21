@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/api/game/', gameRouter)
+app.use('/api/game', gameRouter)
 
 // Auth to discord API
 app.post("/api/token", async (req, res) => {
@@ -49,5 +49,6 @@ app.post("/api/token", async (req, res) => {
 
 app.listen(port, () => {
   console.log("Registered routes:", app._router.stack.map(r => r.route?.path));
+  console.log("Registered routes to gameRouter", gameRouter.stack.map(r => r.route?.path))
   console.log(`Server listening at http://localhost:${port}`);
 });

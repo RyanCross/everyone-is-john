@@ -1,4 +1,4 @@
-import express from "express"
+import express, {  } from "express"
 import { body, validationResult } from "express-validator";
 import { Request, Response } from "express";
 import { games } from "../server.js";
@@ -8,7 +8,7 @@ import { initGameState } from "../game.js";
  * Router to modularize any specific middleware for game routes
  * mounted on the app in server.js as /game, so all routes here are prefixed with /game
  */
-export const gameRouter = express.Router()
+export const gameRouter = express.Router({mergeParams: true}) 
 
 gameRouter.post("/roll",
     body('roll').notEmpty().isNumeric().escape(),
@@ -48,3 +48,27 @@ gameRouter.post("/:instanceId", async (req: Request, res: Response) => {
 
   // how are we going to push this update? HTTP response. server sent events.
 })
+
+
+gameRouter.get("/:instanceId/updates", async (req: Request, res: Response) => {
+    console.log("route reached")
+    // accept input param
+    //const instanceId = req.params.instanceId
+    // retrieve the game state,
+
+    // how does the server enqueue messages to be sent?  "e.g. how do we invoke the event server side"
+    // trigger a change
+
+    // make a function that gets current game state
+    //const game = games.get(instanceId)
+
+
+    res.setHeader("Content-Type", "text/event-stream")
+    res.setHeader("Cache-Control", "no cache")
+    // set the encoding
+   // res.setDefaultEncoding("utf8")
+    // define some data
+    res.send("data: 123")
+
+
+  });

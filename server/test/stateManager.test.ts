@@ -1,8 +1,6 @@
 import * as assert from "node:assert"
 import { stateManager } from "../src/stateManager.js"
 import { setTimeout } from "timers/promises"
-import { promiseHooks } from "node:v8"
-
 
 async function testRunAndLock() {
 

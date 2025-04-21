@@ -5,13 +5,14 @@ import { GameMasterSection } from './components/GameMasterSection'
 import { Roll } from './components/Roll'
 import { Voices } from './components/Voices'
 import { PlayInformationArea } from './components/PlayInformationArea'
+import { sdk } from './sdk/GameServerSdk'
 
 export interface Bid {
   bidId: number
   submittedPlayers: number[]
 }
 
-function App() {
+async function App() {  
   const [count, setCount] = useState(0)
   const [bid, setBid] = useState()
 
