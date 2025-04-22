@@ -62,6 +62,10 @@ gameRouter.get("/:instanceId/updates", async (req: Request, res: Response) => {
     // make a function that gets current game state
     //const game = games.get(instanceId)
 
+    // Temp allowance for CORS bypass
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173")
+    res.setHeader("Access-Control-Allow-Methods", "*")
+    res.setHeader("Access-Control-Allow-Headers", "*")
 
     res.setHeader("Content-Type", "text/event-stream")
     res.setHeader("Cache-Control", "no cache")

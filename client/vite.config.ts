@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   envDir: '../',
   server: {
-    allowedHosts: ["labels-ask-crop-equity.trycloudflare.com"],
+    allowedHosts: ["madness-tu-priced-involving.trycloudflare.com"],
     proxy: {
       '/api': {
         target: 'http://localhost:8080',

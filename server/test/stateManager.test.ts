@@ -19,13 +19,12 @@ async function testRunAndLock() {
         state: game
     }
 
-    // how do we ensure both of these non-blocking methods are done by the time an assert runs
-    // assert is happening right away
-    // await means 
+
     const promises = [
         stateManager.runLocked(lockable, testFn, 1),
         stateManager.runLocked(lockable, testFn, 1)
     ]
-}
 
+    await Promise.all(promises)
+}
 testRunAndLock();
