@@ -11,7 +11,7 @@ export interface Bid {
   submittedPlayers: number[]
 }
 
-function App() {
+function App() {  
   const [count, setCount] = useState(0)
   const [bid, setBid] = useState()
 
