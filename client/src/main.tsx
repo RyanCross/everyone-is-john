@@ -71,16 +71,42 @@ discordSdk.subscribe(Events.ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE, updatePartici
 
 **/
 
+ const url = `http://localhost:8080/api/game/1/updates`
 // await works by suspending code execution and returning control to the calling function 
-let gameUpdateSource = await sdk.subscribeToGameUpdates("1")
+let gameUpdatesSource = new EventSource(url) 
+gameUpdatesSource.onopen = (ev) => {
+  console.log("Game Source Updates Connection opened")
+  console.log(ev)
+}
+
+gameUpdatesSource.onmessage = (ev) => {
+  console.log("on message")
+  console.log(ev)
+}
+
+gameUpdatesSource.onerror = (ev) => {
+  console.log("error")
+  console.log("ev")
+}
+
+
+
+
+
+
+sdk.subscribeToGameUpdates("1").then(() => {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <ThemeProvider theme={theme}>
+        <CssBaseline>
+          <App />
+        </CssBaseline>
+      </ThemeProvider>
+    </StrictMode>,
+  )
+}).catch(() => {
+  throw new Error("This client was unable to subscribe to the SSE endpoint")
+})
 console.log("main flow control resumed resumed")
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline>
-        <App />
-      </CssBaseline>
-    </ThemeProvider>
-  </StrictMode>,
-)
+
