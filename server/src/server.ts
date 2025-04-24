@@ -3,13 +3,16 @@ import dotenv from "dotenv";
 import morgan from "morgan"
 import fetch from "node-fetch";
 import { gameRouter } from "./routers/gameRouter.js";
+import { mockProvider } from "./mocks/mocksProvider.js";
 dotenv.config({ path: "../.env" });
 
 const app = express();
 const port = 8080;
-
 // the active games (activity instances), we'll store this in server memory for now.
 export const games = new Map<string, any>()
+// create the test game
+const [instanceId, game] = mockProvider.newGame()
+games.set(instanceId, game)
 
 // Allow express to parse JSON bodies
 app.use(express.json());

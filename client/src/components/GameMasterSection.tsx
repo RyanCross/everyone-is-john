@@ -12,6 +12,4 @@ export function GameMasterSection(props: GameMasterSectionProps) {
             <GmActionBar />
         </Container>
     )
-
-
 }
