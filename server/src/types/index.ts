@@ -1,3 +1,5 @@
+import { EventEmitter } from "stream"
+
 export interface Player {
     id: string
     username: string
@@ -21,5 +23,10 @@ export interface Game {
     gm: Player
     players: Player[] 
     activeBid: Bid | null
+}
+
+export interface GameInstance {
+    emitter: EventEmitter
+    game: Game
 }
 

@@ -4,15 +4,15 @@
  */
 
 export const sdk = {
-    subscribeToGameUpdates: subscribeToGameUpdates
+    connectToGameInstance: connectToGameInstance
 }
 function save(instanceId: string, player: any) {
     // create a HTTP POST request to /.proxy/game/instanceId
 }
 
 
-async function subscribeToGameUpdates(instanceId: string): Promise<void> {
-    const url = `http://localhost:8080/api/game/1/updates`
+async function connectToGameInstance(instanceId: string): Promise<void> {
+    const url = `http://localhost:8080/api/game/${instanceId}/`
     let promise = new Promise((resolve, reject) => {
         fetch(url)
             .then((result) => resolve(result))

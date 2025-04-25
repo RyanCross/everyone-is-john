@@ -1,18 +1,22 @@
-import { Game, Player } from "../types/index.js"
+import { Game, GameInstance, Player } from "../types/index.js"
 
 export const mockProvider = {
+    getActiveGames: getActiveGames,
     newGame: newGame
 }
 
+function getActiveGames(): Map<string, GameInstance> {
+    return new Map<string, GameInstance>()
+}
+
 function newGame(): [string, Game] {
-    let players : Player[] = []
     const instanceId = "1"
-    let game : Game = {
+    let players : Player[] = []
+    const game : Game = {
         gm: {id: "100", username: "Fildop"},
         players: players,
         activeBid: null
     }
-    
 
     // create 4 player objects
     for (let i = 0; i <= 3; i++) {
