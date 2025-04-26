@@ -35,7 +35,7 @@ gameRouter.post("/roll",
 
 gameRouter.get("/:instanceId", async (req: Request, res: Response) => {
   // Temp allowance for CORS bypass
-  res.setHeader("Clear-Site-Data", "*")
+  // res.setHeader("Clear-Site-Data", "*")
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173")
   res.setHeader("Access-Control-Allow-Methods", "*")
   res.setHeader("Access-Control-Allow-Headers", "*")
@@ -46,10 +46,11 @@ gameRouter.get("/:instanceId", async (req: Request, res: Response) => {
   const newPlayer = req.body.newPlayer
 
   // if game does not exist for the activity instance in server memory, create one
-  const instance = games.get(instanceId)
-  if (instance.game) {
+  let instance = games.get(instanceId)
+  if (instance) {
     instance.game.players.push(newPlayer)
   } else {
+    // Actual game creation logic will go here
     const [instanceId, newGame] = mockProvider.newGame()
     const eventEmitter = new EventEmitter()
     const gameInstance: GameInstance = {
@@ -57,17 +58,14 @@ gameRouter.get("/:instanceId", async (req: Request, res: Response) => {
       game: newGame
     }
     games.set(instanceId, gameInstance)
+    instance = gameInstance
   }
 
-  instance.emitter.emit('event')
   res.send(200)
 })
 
 
 gameRouter.get("/:instanceId/updates", async (req: Request, res: Response) => {
-  const instanceId = req.params.instanceId
-  const gameInstance = games.get(req.params.instanceId)
-
   // Temp allowance for CORS bypass
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173")
   res.setHeader("Access-Control-Allow-Methods", "*")
@@ -76,10 +74,20 @@ gameRouter.get("/:instanceId/updates", async (req: Request, res: Response) => {
   res.setHeader("Content-Type", "text/event-stream")
   res.setHeader("Cache-Control", "no cache")
   res.setHeader("Connection", "keep-alive")
-  // res.flushHeaders() // res.write might not send right away (buffering), force it to, actually needed?
 
-  // send data when game object changes by other state changing requests
+  const instanceId = req.params.instanceId
+  const gameInstance = games.get(instanceId)
+  if (!gameInstance) {
+    res.status(400).send("Game instance not found on server")
+    return
+  }
+
+  // register the listener that will keep sending game data as changes are emitted
   gameInstance.emitter.on('event', () => {
-    res.write(`data: ${JSON.stringify(gameInstance.game)}\n\n`) // double newline required for format for some reason
+    console.log("emitting")
+    res.write(`data: ${JSON.stringify(gameInstance.game)} \n\n`) // double newline required for format for some reason
   })
+
+  // upon first establishing connection to this update route, emit current game state
+  gameInstance.emitter.emit('event')
 });

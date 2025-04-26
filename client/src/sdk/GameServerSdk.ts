@@ -18,16 +18,4 @@ async function connectToGameInstance(instanceId: string): Promise<void> {
             .then((result) => resolve(result))
             .catch((error) => reject(error))
     });
-
-
-    // fetch promse is resolving
-    return await promise.then((response) => {
-        // // return event source
-        // const gameEvents : EventSource = new EventSource(url)
-        // return gameEvents
-
-    }).catch((reason: Error) => {
-        // some error handling, maybe retrying connection
-        throw new Error(reason.message)
-    })
 }

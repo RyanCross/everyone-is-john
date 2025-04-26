@@ -80,6 +80,7 @@ sdk.connectToGameInstance("1").then(() => {
   // await works by suspending code execution and returning control to the calling function 
   let gameUpdatesSource = new EventSource(url)
   gameUpdatesSource.onopen = (ev) => {
+    // might need to first paint here
     console.log("Game Source Updates Connection opened")
     console.log(ev)
   }
@@ -98,14 +99,14 @@ sdk.connectToGameInstance("1").then(() => {
     <StrictMode>
       <ThemeProvider theme={theme}>
         <CssBaseline>
-          <App />
+          <App updateSrc={gameUpdatesSource} />
         </CssBaseline>
       </ThemeProvider>
     </StrictMode>,
   )
-}).catch(() => {
-  throw new Error("This client was unable to subscribe to the SSE endpoint")
+}).catch((error) => {
+  throw error 
 })
-console.log("main flow control resumed resumed")
+console.log("main flow control resumed")
 
 
