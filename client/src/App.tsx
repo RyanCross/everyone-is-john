@@ -1,8 +1,5 @@
-import { ComponentProps, useEffect, useState } from 'react'
-import { Container, ThemeProvider } from "@mui/material"
-import { GameLog } from './components/GameLog'
+import { useEffect, useState } from 'react'
 import { GameMasterSection } from './components/GameMasterSection'
-import { Roll } from './components/Roll'
 import { Voices } from './components/Voices'
 import { PlayInformationArea } from './components/PlayInformationArea'
 
@@ -13,32 +10,67 @@ export interface Bid {
 
 export interface AppProps {
   updateSrc: EventSource
+  instanceId: string
 }
 
-function App(props: AppProps) {
-  // useEffect to define handlers
+function App() {
+  const updatesUrl = `http://localhost:8080/api/game/1/updates`
+  const [gmName, setGmName] = useState("")
+  const [gmId, setGmId] = useState("")
+  const [players, setPlayers] = useState([])
 
-  // const [game, setGame] = useState()
+  // expectation is that useEffect is called once with these unchanging dependencies
+  useEffect(() => {
+    console.log("calling effect")
+    // establish connection
+    const gameUpdatesSource = new EventSource(updatesUrl)
 
-  // const useGameUpdateSrc = useEffect(() => {
-  //   // why do we need an effect? handlers are defined..
-  // })
+    // define handlers
+    gameUpdatesSource.onopen = (ev) => {
+      console.log("Game Source Updates Connection opened")
+      console.log(ev)
+    }
 
-  // props.updateSrc.onmessage = (ev) => {
-  //   let data = JSON.parse(ev.data)
-  //   setGame(data)
-  // }
+    gameUpdatesSource.onmessage = (ev) => {
+      const serverGameState = JSON.parse(ev.data)
+
+      setGmName(serverGameState.gm.username)
+      setGmId(serverGameState.gm.id)
+      setPlayers(serverGameState.players)
+      console.log("on message")
+      console.log(ev)
+      // so this set should update the value but it does not
+    }
+
+    gameUpdatesSource.onerror = (ev) => {
+      console.log("error")
+      console.log(ev)
+    }
+
+    // if platform is web, close event listener on refresh
+    if (window) {
+      window.addEventListener("onbeforeunload", () => {
+        gameUpdatesSource.close()
+      })
+    }
+
+    // effects return a cleanup function
+    return () => {
+      gameUpdatesSource.close()
+    }
+
+  }, [updatesUrl])
 
 
-  const [count, setCount] = useState(0)
-  const [bid, setBid] = useState()
+
+  // can initiate event source in useEffect and it will only be called once
 
   return (
-      <>
-        <GameMasterSection gm="zzPodlif" />
-        <PlayInformationArea></PlayInformationArea>
-        <Voices></Voices>
-      </>
+    <>
+      <GameMasterSection gmName={gmName} gmId={gmId} />
+      <PlayInformationArea></PlayInformationArea>
+      <Voices players={players} ></Voices>
+    </>
   )
 }
 

@@ -1,5 +1,5 @@
-tests that validate XSS on roll - // script tags
-dockerize server
-create react GameLog component
+
+close connection on unload or refresh
+does window exist in discord activity?
  *  
  * 

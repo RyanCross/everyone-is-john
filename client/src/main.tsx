@@ -75,31 +75,11 @@ discordSdk.subscribe(Events.ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE, updatePartici
 
 // create a new game instance keyed by activityInstanceId, or join the existing one
 sdk.connectToGameInstance("1").then(() => {
-
-  const url = `http://localhost:8080/api/game/1/updates`
-  // await works by suspending code execution and returning control to the calling function 
-  let gameUpdatesSource = new EventSource(url)
-  gameUpdatesSource.onopen = (ev) => {
-    // might need to first paint here
-    console.log("Game Source Updates Connection opened")
-    console.log(ev)
-  }
-
-  gameUpdatesSource.onmessage = (ev) => {
-    console.log("on message")
-    console.log(ev)
-  }
-
-  gameUpdatesSource.onerror = (ev) => {
-    console.log("error")
-    console.log("ev")
-  }
-  
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <ThemeProvider theme={theme}>
         <CssBaseline>
-          <App updateSrc={gameUpdatesSource} />
+          <App />
         </CssBaseline>
       </ThemeProvider>
     </StrictMode>,

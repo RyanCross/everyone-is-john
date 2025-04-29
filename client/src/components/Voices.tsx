@@ -6,7 +6,7 @@ import { Player, PlayerProps } from "./Player";
  *  status information for all players
  */
 
-export function Voices() {
+export function Voices(props: {players: any[]}) {
 
     let dummyPlayer = {
         name: "Jimbo",
