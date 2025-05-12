@@ -64,6 +64,9 @@ gameRouter.get("/:instanceId", async (req: Request, res: Response) => {
   res.send(200)
 })
 
+gameRouter.post("/:instanceId/leave", async (req: Request, res: Response) => {
+  
+})
 
 gameRouter.get("/:instanceId/updates", async (req: Request, res: Response) => {
   // Temp allowance for CORS bypass
@@ -82,11 +85,18 @@ gameRouter.get("/:instanceId/updates", async (req: Request, res: Response) => {
     return
   }
 
-  // register the listener that will keep sending game data as changes are emitted
-  gameInstance.emitter.on('event', () => {
-    console.log("emitting")
+  let count = 0
+  setInterval(() => {
+    gameInstance.game.gm = { id: "1", username: `fildop ${count}`}
+
     res.write(`data: ${JSON.stringify(gameInstance.game)} \n\n`) // double newline required for format for some reason
-  })
+    count++
+  }, 1000)
+  // register the listener that will keep sending game data as changes are emitted
+  // gameInstance.emitter.on('event', () => {
+  //   console.log("emitting")
+  //   res.write(`data: ${JSON.stringify(gameInstance.game)} \n\n`) // double newline required for format for some reason
+  // })
 
   // upon first establishing connection to this update route, emit current game state
   gameInstance.emitter.emit('event')

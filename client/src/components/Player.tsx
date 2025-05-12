@@ -1,4 +1,4 @@
-import { Avatar, Badge, Box, Button, Card, CardActionArea, CardContent, CardMedia, Container, Divider, Typography } from "@mui/material"
+import { Avatar, Badge, Box, Button, Card, CardActionArea, CardContent, Divider, Typography } from "@mui/material"
 import svg from "../assets/react.svg"
 import crownSvg from "../assets/crown.svg"
 import { useState } from "react"
@@ -65,10 +65,6 @@ export function Player(props: PlayerProps) {
                     <Typography>{`Willpower: ${willpower}`}</Typography>
                 </CardContent>
             </CardActionArea>
-
-
-
-
         </Card>
 
     )

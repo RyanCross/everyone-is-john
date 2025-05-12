@@ -2,7 +2,7 @@ import { Game, GameInstance, Player } from "../types/index.js"
 
 export const mockProvider = {
     getActiveGames: getActiveGames,
-    newGame: newGame
+    newGame: newGame,
 }
 
 function getActiveGames(): Map<string, GameInstance> {
